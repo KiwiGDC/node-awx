@@ -10,3 +10,4 @@ export function params(token : string|undefined = undefined, method: "POST" | "G
         }
     }  
 }
+

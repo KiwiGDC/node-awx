@@ -1,3 +1,3 @@
-import { Api } from "./Api.js";
+import { AnsibleApi } from "./Api/Api.js";
 
-export default Api
+export default AnsibleApi
