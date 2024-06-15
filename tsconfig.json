@@ -9,15 +9,15 @@
     "strict": true,                                      /* Enable all strict type-checking options. */
 
     "skipLibCheck": true,
-
+ 
     "outDir": "dist",
     "moduleResolution": "Node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "declaration": true
   },
-
   "include": [
       "src/**/*",
-  ],
+  ]
 
 
 }
