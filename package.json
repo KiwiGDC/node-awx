@@ -1,7 +1,7 @@
 {
   "name": "knode-awx",
   "description": "AWX (Ansible) interface with nodejs",
-
+  "main": "dist/src/index.js",
   "license": "GPL-3.0",
   "type": "module",
   "version": "0.0.6",
