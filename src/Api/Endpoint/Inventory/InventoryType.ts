@@ -1,3 +1,5 @@
+import {Summary} from "../../ReturnType/GenericType";
+
 export type Inventory = {
     id: bigint
     type: "inventory" | string
@@ -24,11 +26,11 @@ export type Inventory = {
     "inventory_sources_with_failures": number,
     "pending_deletion": boolean,
     "prevent_instance_group_fallback": boolean
-}
-
-export type ListInventories = {
-    count: bigint
-    next: string
-    previous: string
-    results: Array<Inventory>
+    "summary_field": {
+        "organization": Summary["Organization"]
+        "created_by": Summary["User"]
+        "modified_by": Summary["User"]
+        "object_roles": any // TODO : Specify type
+        "user_capabilities": Summary["UserCapabilities"]
+    }
 }

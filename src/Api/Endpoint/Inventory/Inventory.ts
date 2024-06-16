@@ -1,25 +1,29 @@
-import {AnsibleApi} from "../../Api";
+import {AnsibleApi} from "../../Api.js";
 import {Generic} from "../Generic.js";
-import {ListInventories, Inventory as InventoryT} from "./InventoryType";
+import {Inventory as InventoryT} from "./InventoryType";
+import {Pager} from "../../ReturnType/GenericType";
 
 export class Inventory extends Generic {
 
     static LIST = "inventories/"
     static DETAIL = "inventories/{id}/"
 
-    constructor(api : AnsibleApi) {
-        super(api)
+    inventory
+    constructor(inventory : InventoryT) {
+        super()
+        this.inventory = inventory;
     }
 
-    public async list() : Promise<ListInventories>
+    public static async list() : Promise<Pager<InventoryT>>
     {
-        return await this.api.fetchData(await this.api.fetchAPI(Inventory.LIST));
+        return await AnsibleApi.GETINSTANCE().fetchData(await AnsibleApi.GETINSTANCE().fetchAPI(Inventory.LIST));
 
     }
 
-    public async get(id: number): Promise<InventoryT>
+    public static async get(id: number): Promise<Inventory>
     {
-        return await this.api.fetchData(await this.api.fetchAPI(Inventory.DETAIL.replace("{id}", id.toString())))
+        const inventoryDetail = await AnsibleApi.GETINSTANCE().fetchData(await AnsibleApi.GETINSTANCE().fetchAPI(Inventory.DETAIL.replace("{id}", id.toString())));
+        return new Inventory(inventoryDetail);
     }
 
 

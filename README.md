@@ -9,13 +9,16 @@ AWX Api Interface for nodejs
 ## Usage
 
 ```ts
-import {AnsibleApi} from "./Api";
-import {Inventory} from "./Inventory";
+import AnsibleApi from "../src/index.js";
+import {JobTemplate} from "../src/Api/Endpoint/Job/JobTemplate.js";
+import {Inventory} from "../src/Api/Endpoint/Inventory/Inventory.js";
 
-const ansibleApi = new AnsibleApi("https://localhost:8043/api/v2/", {token: "TOKEN"});
+const AApi = new AnsibleApi("https://localhost:8043/api/v2/", {token: "TOKEN"});
 
-const inventory  = await new Inventory(ansibleApi).get(1);
+const job = await (await JobTemplate.get(7)).launch()
+const inventory = await Inventory.get(1)
 
-console.log(inventory)
+console.log(inventory.inventory)
+console.log(await job.isFinished())
 
 ```
