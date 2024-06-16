@@ -3,6 +3,7 @@ import {AnsibleApi} from "../../Api.js";
 import {FinishedJob, Pager} from "../../ReturnType/GenericType.js";
 import {Job as JobT} from "./JobType.js";
 import {StatusJob as StatusJobE} from "../../Enum/StatusJob.js"
+import {sleep} from "../../utils.js";
 
 
 
@@ -16,6 +17,7 @@ export class Job extends Generic {
         super();
         this.job = job;
     }
+
 
     public static async list() : Promise<Pager<JobT>>
     {
@@ -36,6 +38,19 @@ export class Job extends Generic {
         return {
             finished: status !== StatusJobE.WAITING && status !== StatusJobE.PENDING && status !== StatusJobE.NEW,
             status: status
+        }
+    }
+
+    /**
+     * Wait job
+    **/
+    public async wait(checkInterval: number = 2500){
+        while (true){
+            const finished = await this.isFinished()
+            if(finished.finished){
+                return finished
+            }
+            await sleep(checkInterval);
         }
     }
 

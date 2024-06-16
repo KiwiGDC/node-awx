@@ -8,4 +8,4 @@ const job = await (await JobTemplate.get(7)).launch()
 const inventory = await Inventory.get(1)
 
 console.log(inventory.inventory)
-console.log(await job.isFinished())
+console.log(await job.wait())

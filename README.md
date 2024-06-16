@@ -14,6 +14,7 @@ AWX Api Interface for nodejs
   - Get
   - List
   - isFinished
+  - wait(ms) : Wait for the job to finish (Sucessfull, Error, Failed, ...) 
 
 ## Usage
 

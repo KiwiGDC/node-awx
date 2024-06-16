@@ -11,3 +11,6 @@ export function params(token : string|undefined = undefined, method: "POST" | "G
     }  
 }
 
+export function sleep(ms: number): Promise<number> {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
