@@ -1,11 +1,16 @@
 {
-  "name": "node-awx",
+  "name": "knode-awx",
   "description": "AWX (Ansible) interface with nodejs",
+  "sc"
   "license": "GPL-3.0",
   "type": "module",
   "version": "0.0.6",
   "devDependencies": {
     "typescript": "^5.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KiwiGDC/node-awx/"
   },
   "scripts": {
     "clean": "rm -r ./dist"
