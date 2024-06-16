@@ -1,4 +1,4 @@
-import AnsibleApi from "../src/index.js";
+import {AnsibleApi} from "../src/index.js";
 import {JobTemplate} from "../src/Api/Endpoint/Job/JobTemplate.js";
 import {Inventory} from "../src/Api/Endpoint/Inventory/Inventory.js";
 
