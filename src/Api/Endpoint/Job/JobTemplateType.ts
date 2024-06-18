@@ -4,7 +4,11 @@ import {
     StatusJob, Summary,
 } from "../../ReturnType/GenericType";
 
-
+export type JobTemplateLisType = {
+    nextPage: number,
+    previousPage: number,
+    results: Array<JobTemplate>
+}
 
 export type JobTemplate = {
     "id": number,

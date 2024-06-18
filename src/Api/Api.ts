@@ -2,6 +2,7 @@ import { AuthToken } from "../Auth/Auth.js";
 import {FetchApiError} from "./Error/FetchApiError.js";
 import {params} from "./utils.js";
 import {InstanceApiError} from "./Error/InstanceApiError.js";
+import { AllowedMethod } from "./ApiUrl.js";
 
 export class AnsibleApi
 {
@@ -44,10 +45,11 @@ export class AnsibleApi
         return this.INSTANCE
     }
 
-    public async fetchAPI(endpoint: string, paramRequest: RequestInit|undefined|"POST" = undefined) {
+    public async fetchAPI(endpoint: string, paramRequest: RequestInit|undefined|AllowedMethod = undefined) {
         const urlEndPoint = new URL(endpoint, this.url)
-        if(!paramRequest) paramRequest = params(this.token)
-        else if(paramRequest == "POST") paramRequest = params(this.token, "POST")
+        if(!paramRequest || paramRequest == "GET") paramRequest = params(this.token)
+        else if(typeof paramRequest == "string") paramRequest = params(this.token, paramRequest)
+        
         return await fetch(urlEndPoint, paramRequest);
     }
 
