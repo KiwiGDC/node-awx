@@ -10,11 +10,32 @@ export class AnsibleApi
 
     private static INSTANCE: AnsibleApi|null;
 
+    static TEST : string = "ping/"
+
+    private async testServer()
+    {
+        const errorMessage = "ANSIBLE SERVER NOT REACHABLE (verify url and status of server) (put url with protocol and 'api/v2/' at the end)"
+        try 
+        {
+        const {status} = (await this.fetchAPI(AnsibleApi.TEST))
+        if(status != 200)
+            throw new Error(errorMessage);
+        }
+        catch 
+        {
+            throw new Error(errorMessage);
+        }
+        
+        
+    }
+
     constructor(url: string, auth: AuthToken)
     {
         this.token = auth.token;
         this.url = new URL(url);
         AnsibleApi.INSTANCE = this;
+        this.testServer();
+
     }
 
     public static GETINSTANCE() : AnsibleApi
@@ -24,9 +45,10 @@ export class AnsibleApi
     }
 
     public async fetchAPI(endpoint: string, paramRequest: RequestInit|undefined|"POST" = undefined) {
+        const urlEndPoint = new URL(endpoint, this.url)
         if(!paramRequest) paramRequest = params(this.token)
         else if(paramRequest == "POST") paramRequest = params(this.token, "POST")
-        return await fetch(new URL(endpoint, this.url), paramRequest);
+        return await fetch(urlEndPoint, paramRequest);
     }
 
     public async fetchData(response: Response)
