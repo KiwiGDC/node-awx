@@ -1,4 +1,6 @@
-export function params(token : string|undefined = undefined, method: "POST" | "GET" = "GET") : RequestInit 
+import { AllowedMethod } from "./ApiUrl.js";
+
+export function params(token : string|undefined = undefined, method: AllowedMethod = "GET") : RequestInit 
 { 
 
     const paramAuthorization = token ? {Authorization: `Bearer ${token}`} : undefined
