@@ -36,7 +36,7 @@ export class Job extends Generic {
         const {id} = this.job
         const {status} : JobT = await AnsibleApi.GETINSTANCE().fetchData(await AnsibleApi.GETINSTANCE().fetchAPI(Job.DETAIL.replace("{id}", id.toString())))
         return {
-            finished: status !== StatusJobE.WAITING && status !== StatusJobE.PENDING && status !== StatusJobE.NEW,
+            finished: status !== StatusJobE.WAITING && status !== StatusJobE.PENDING && status !== StatusJobE.NEW && status != StatusJobE.RUNNING,
             status: status
         }
     }
