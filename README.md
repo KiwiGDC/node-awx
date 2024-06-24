@@ -32,3 +32,11 @@ console.log(inventory.inventory)
 console.log(await job.isFinished())
 
 ```
+
+## Run Test
+
+```bash
+$ export AWX_TOKEN="TOKEN_AWX"; npm run test
+// or
+$ export AWX_TOKEN="TOKEN_AWX"; export AWX_URL="https://url.com"; npm run test
+```
