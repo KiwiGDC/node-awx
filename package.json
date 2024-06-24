@@ -4,7 +4,7 @@
   "main": "dist/src/index.js",
   "license": "GPL-3.0",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.7-c",
   "devDependencies": {
     "@babel/preset-env": "^7.24.7",
     "@types/jest": "^29.5.12",
@@ -15,6 +15,9 @@
     "tsc-alias": "^1.8.10",
     "typescript": "^5.4.5"
   },
+  "files": [
+    "dist/**/*"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/KiwiGDC/node-awx/"
