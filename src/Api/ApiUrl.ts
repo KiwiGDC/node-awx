@@ -1,29 +1,50 @@
 import { AnsibleApi } from "./Api.js";
 
-export type ApiUrl = {
+export type ApiUrlType = {
     endpoint: string;
     url?: string;
-    method: AllowedMethod
+    method?: AllowedMethod
+    queryParams?: {[key: string]: string}
 }
 
 export type AllowedMethod = "POST"|"GET"|"PUT"|"DELETE"|"PATCH"
 
-export type UrlReplaced<T extends {toString: () => string}> = Array<{
-   [key: string]: T
-}>
+export type UrlReplaced<T extends {toString: () => string}> = {[key: string]: T}
 
+export class ApiUrl {
 
+    endpoint: string;
+    method?: AllowedMethod;
+    url?: URL;
 
-export function urlGen<T extends {toString: () => string}>(url: ApiUrl, listPattern: UrlReplaced<T>, queryParams: Array<{[key: string]: string}>) : URL {
-    for(const pattern in listPattern){
-        url.endpoint = url.endpoint.toString().replace(pattern, listPattern[pattern]())
+    private constructor(endpoint: string, method: AllowedMethod = "GET") {
+        this.endpoint = endpoint
+        this.method = method
     }
 
-    const finalURL : URL = new URL(url.endpoint, AnsibleApi.GETINSTANCE().url);
 
+    /**
+     * Generate URL with endpoint, method and queryParams
+     * @param url - URL Information, Params, Method
+     * @param listPattern - List for replace pattern with value
+     */
+    static gURL<T extends {toString: () => string}>(url: ApiUrlType, listPattern: UrlReplaced<T> = {}) : ApiUrl {
 
-    for(const query in queryParams){
-        finalURL.searchParams.append(query, queryParams[query].toString())
+        for(const pattern in listPattern){
+            url.endpoint = url.endpoint.toString().replace(`{${pattern}}`, listPattern[pattern].toString())
+        }
+        const ApiURL = new ApiUrl(url.endpoint, url.method)
+        ApiURL.url = new URL(url.endpoint, AnsibleApi.GETINSTANCE().url);
+        for(const query in url.queryParams){
+            ApiURL.url.searchParams.append(query, url.queryParams[query].toString())
+        }
+        return ApiURL;
     }
-    return finalURL;
+
+    public toString() : string
+    {
+        return this.url ? this.url.toString() : ""
+    }
+
+
 }
