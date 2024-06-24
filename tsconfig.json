@@ -16,9 +16,13 @@
     "declaration": true
   },
   "include": [
-      "src/**/*",
-      "test/**/*"
-  ]
+      "src/**/*"
+  ],
+
+  "tsc-alias": {
+    "resolveFullPaths": true,
+    "verbose": false
+  }
 
 
 }

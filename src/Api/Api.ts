@@ -1,8 +1,8 @@
-import { AuthToken } from "../Auth/Auth.js";
-import {FetchApiError} from "./Error/FetchApiError.js";
-import {params} from "./utils.js";
-import {InstanceApiError} from "./Error/InstanceApiError.js";
-import {AllowedMethod, ApiUrl, ApiUrlType} from "./ApiUrl.js";
+import { AuthToken } from "../Auth/Auth";
+import {FetchApiError} from "./Error/FetchApiError";
+import {params} from "./utils";
+import {InstanceApiError} from "./Error/InstanceApiError";
+import {ApiUrl, ApiUrlType} from "./ApiUrl";
 
 export class AnsibleApi
 {
@@ -13,11 +13,12 @@ export class AnsibleApi
 
     static TEST : ApiUrlType = {endpoint: "ping/"}
 
-    private async testServer()
+    public async testServer()
     {
         const errorMessage = "ANSIBLE SERVER NOT REACHABLE (verify url and status of server) (put url with protocol and 'api/v2/' at the end)"
         const {status} = (await this.fetchAPI(ApiUrl.gURL(AnsibleApi.TEST)))
         if(status != 200) throw new Error(errorMessage);
+        return status
 
     }
 

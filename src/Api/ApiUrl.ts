@@ -1,4 +1,4 @@
-import { AnsibleApi } from "./Api.js";
+import { AnsibleApi } from "./Api";
 
 export type ApiUrlType = {
     endpoint: string;

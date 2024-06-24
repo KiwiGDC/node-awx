@@ -1,5 +1,5 @@
-import {AnsibleApi} from "../../Api.js";
-import {Generic} from "../Generic.js";
+import {AnsibleApi} from "../../Api";
+import {Generic} from "../Generic";
 import {Inventory as InventoryT} from "./InventoryType";
 import {Pager} from "../../ReturnType/GenericType";
 import {ApiUrl, ApiUrlType} from "../../ApiUrl";

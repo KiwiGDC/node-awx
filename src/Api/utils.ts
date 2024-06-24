@@ -1,4 +1,4 @@
-import { AllowedMethod } from "./ApiUrl.js";
+import { AllowedMethod } from "./ApiUrl";
 
 export function params(token : string|undefined = undefined, method: AllowedMethod = "GET") : RequestInit 
 { 

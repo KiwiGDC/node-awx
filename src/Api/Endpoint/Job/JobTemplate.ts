@@ -1,10 +1,9 @@
-import {Generic} from "../Generic.js";
-import {AnsibleApi} from "../../Api.js";
+import {Generic} from "../Generic";
+import {AnsibleApi} from "../../Api";
 import {JobTemplate as JobTemplateT} from "./JobTemplateType";
 
 import {Pager} from "../../ReturnType/GenericType";
-import {Job} from "./Job.js";
-import {ApiUrl, ApiUrlType} from "../../ApiUrl.js";
+import {ApiUrl, ApiUrlType} from "../../ApiUrl";
 
 
 

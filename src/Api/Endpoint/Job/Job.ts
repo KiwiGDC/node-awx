@@ -1,10 +1,10 @@
-import {Generic} from "../Generic.js";
-import {AnsibleApi} from "../../Api.js";
-import {FinishedJob, Pager} from "../../ReturnType/GenericType.js";
-import {Job as JobT} from "./JobType.js";
-import {StatusJob as StatusJobE} from "../../Enum/StatusJob.js"
-import {sleep} from "../../utils.js";
-import {ApiUrl, ApiUrlType} from "../../ApiUrl.js";
+import {Generic} from "../Generic";
+import {AnsibleApi} from "../../Api";
+import {FinishedJob, Pager} from "../../ReturnType/GenericType";
+import {Job as JobT} from "./JobType";
+import {StatusJob as StatusJobE} from "../../Enum/StatusJob"
+import {sleep} from "../../utils";
+import {ApiUrl, ApiUrlType} from "../../ApiUrl";
 
 
 
