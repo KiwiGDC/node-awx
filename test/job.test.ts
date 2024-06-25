@@ -12,7 +12,7 @@ test('GETINSTANCE - AnsibleApi', async () => {
 });
 
 test('TestServer - AnsibleApi', async () => {
-    const status = await AnsibleApi.GETINSTANCE().testServer()
-    console.log(status)
+    const {status, jsonData} = await AnsibleApi.GETINSTANCE().testServer()
+    console.log(jsonData)
     expect(status).toBe(200)
 })
