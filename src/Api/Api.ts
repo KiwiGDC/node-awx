@@ -13,12 +13,21 @@ export class AnsibleApi
 
     static TEST : ApiUrlType = {endpoint: "ping/"}
 
-    public async testServer()
+    public async testServer(): Promise<any>
     {
-        const errorMessage = "ANSIBLE SERVER NOT REACHABLE (verify url and status of server) (put url with protocol and 'api/v2/' at the end)"
-        const {status} = (await this.fetchAPI(ApiUrl.gURL(AnsibleApi.TEST)))
-        if(status != 200) throw new Error(errorMessage);
-        return status
+
+        const url = ApiUrl.gURL(AnsibleApi.TEST);
+        const response: Response = (await this.fetchAPI(url))
+        if(response.headers.get("Content-Type")?.startsWith("application/json"))
+        {
+            const jsonData = await response.json() as PingType
+            const status = response.status
+            if(status != 200) throw new InstanceApiError(`The server return a status different of 200 : ${status}, url: ${url}`);
+            if(jsonData.instances.length < 1) throw new InstanceApiError(`The server have not active instance, url: ${url}`)
+            return {status, jsonData}
+        }
+        throw new InstanceApiError(`The server is not reachable (verify URL, it must end with a '/'): ${url}`)
+
 
     }
 
@@ -33,7 +42,7 @@ export class AnsibleApi
 
     public static GETINSTANCE() : AnsibleApi
     {
-        if(this.INSTANCE === null) throw new InstanceApiError();
+        if(this.INSTANCE === null) throw new InstanceApiError("API Instance not found, init the class AnsibleApi() before used");
         return this.INSTANCE
     }
 
