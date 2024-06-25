@@ -33,7 +33,6 @@ export class ApiUrl {
         for(const pattern in listPattern){
             url.endpoint = url.endpoint.toString().replace(`{${pattern}}`, listPattern[pattern].toString())
         }
-        console.log(url.endpoint, AnsibleApi.GETINSTANCE().url.toString())
         const ApiURL = new ApiUrl(url.endpoint, url.method)
         ApiURL.url = new URL(url.endpoint, AnsibleApi.GETINSTANCE().url);
         for(const query in url.queryParams){
