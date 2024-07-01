@@ -36,6 +36,9 @@ console.log(await job.isFinished())
 ## Run Test
 
 ```bash
+// desactivate TLS REJECT FOR LOCALHOST TEST 
+export NODE_TLS_REJECT_UNAUTHORIZED=0
+// AWX URL default value : http://localhost:8043
 $ export AWX_TOKEN="TOKEN_AWX"; npm run test
 // or
 $ export AWX_TOKEN="TOKEN_AWX"; export AWX_URL="https://url.com"; npm run test
