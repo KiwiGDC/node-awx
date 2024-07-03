@@ -4,7 +4,7 @@
   "main": "dist/index.js",
   "license": "GPL-3.0",
   "type": "module",
-  "version": "0.0.8-a",
+  "version": "0.1.0",
   "devDependencies": {
     "@babel/preset-env": "^7.24.7",
     "@types/jest": "^29.5.12",
