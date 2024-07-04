@@ -4,6 +4,7 @@ import {JobTemplate as JobTemplateT} from "./JobTemplateType";
 
 import {Pager} from "../../ReturnType/GenericType";
 import {ApiUrl, ApiUrlType} from "../../ApiUrl";
+import { Job } from "./Job";
 
 
 
@@ -32,12 +33,12 @@ export class JobTemplate extends Generic {
         return new JobTemplate(await AnsibleApi.GETINSTANCE().fetchAD(ApiUrl.gURL(JobTemplate.DETAIL, {id: id})))
     }
 
-    public async launch() //Promise<Job>
+    public async launch(): Promise<Job>
     {
         const {id} = this.jobTemplate;
         const url = ApiUrl.gURL(JobTemplate.LAUNCH, {id: id})
         const detail = await AnsibleApi.GETINSTANCE().fetchAD(url);
-        //return new Job(detail)
+        return new Job(detail)
     }
 
 

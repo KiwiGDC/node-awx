@@ -3,7 +3,7 @@
   "description": "AWX (Ansible) interface with nodejs",
   "main": "dist/index.js",
   "license": "GPL-3.0",
-  "version": "0.1.0-a",
+  "version": "0.1.1",
   "devDependencies": {
     "@babel/preset-env": "^7.24.7",
     "@types/jest": "^29.5.12",
